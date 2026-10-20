@@ -1,0 +1,8 @@
+  10 REM *** Color palette
+  20 INK 9: PAPER 7: BRIGHT 0: CLS
+  30 FOR i=0 TO 7
+  40 BRIGHT 1: PAPER i
+  50 PRINT "----";i;"-BRIGHT-ON-----"
+  60 BRIGHT 0: PAPER i
+  70 PRINT "----";i;"-BRIGHT-OFF----"
+  80 NEXT i

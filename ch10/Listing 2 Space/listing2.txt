@@ -1,0 +1,14 @@
+  10 REM *** Moon Landing 2028 by Sean McManus
+  20 BORDER 0: PAPER 0: CLS : BRIGHT 1
+  30 INK 6: FOR g=1 TO 200: PLOT INT (RND*256),INT (RND*80)+96: NEXT g
+  40 INK 1: FOR r=1 TO 15: CIRCLE 200,150,r: NEXT r
+  50 BRIGHT 0: PAPER 7: FOR x=0 TO 31: FOR y=10 TO 21: PRINT AT y,x;" ": NEXT y: NEXT x
+  60 INK 3: PLOT 50,50: DRAW 30,0,-PI: DRAW 10,-20: DRAW -50,0: DRAW 10,20: REM Ship shell
+  70 CIRCLE 65,45,8: CIRCLE 65,45,6: REM Porthole
+  80 PLOT 40,15: DRAW 5,0: DRAW 5,15: DRAW 30,0: DRAW 5,-15: DRAW 5,0: REM Ship legs
+  90 PLOT 60,30: FOR g=10 TO 25 STEP 5: PLOT 60,g: DRAW 0,5: DRAW 10,0: DRAW 0,-5: NEXT g: REM ladder
+ 100 REM Here come the aliens...
+ 110 INK 4: FOR a=1 TO 3: LET start=(a*40)+100
+ 120 CIRCLE start,70,10: CIRCLE start-3,73,3: CIRCLE start+2,73,3: CIRCLE start-4,72,1: CIRCLE start+2,72,1: REM body, eyes, eyeballs
+ 130 PLOT start-4,65: DRAW 10,5,1.5: PLOT start,60: DRAW 0,-8: DRAW -4,-4: PLOT start+5,60: DRAW 0,-8: DRAW -4,-4: REM legs
+ 140 NEXT a

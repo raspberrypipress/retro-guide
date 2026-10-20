@@ -1,0 +1,6 @@
+  10 REM *** String arrays demo
+  20 DIM b$(10,4)
+  30 LET b$(1)="cat"
+  40 LET b$(2)="mouse"
+  50 PRINT b$(1),LEN b$(1)
+  60 PRINT b$(2),LEN b$(2)

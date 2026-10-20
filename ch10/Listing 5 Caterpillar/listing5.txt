@@ -1,0 +1,50 @@
+  10 LET q=0: LET w=0: LET e=0: LET a=0: LET s=0: LET d=0: LET o=0: LET f=0: LET i$="": LET length=5: GO SUB 260: REM Set up variables, screen etc
+  20 LET f=0: PRINT AT e,w;CHR$ 146;: LET w=w+h(o): LET e=e+v(o): PRINT AT e,w;CHR$ 144;: LET q=q+1: IF q=201 THEN LET q=1
+  30 IF m(w+1,e+1)=1 THEN GO TO 120
+  40 IF m(w+1,e+1)=2 THEN GO SUB 180
+  50 LET x(q)=w: LET y(q)=e: LET m(w+1,e+1)=1: LET s=x(a): LET d=y(a): PRINT AT d,s;" ";: LET m(s+1,d+1)=0: IF f=0 THEN LET a=a+1: IF a=201 THEN LET a=1
+  60 LET i$=INKEY$: IF i$="Q" OR i$="q" THEN LET o=4
+  70 IF i$="A" OR i$="a" THEN LET o=2
+  80 IF i$="O" OR i$="o" THEN LET o=3
+  90 IF i$="P" OR i$="p" THEN LET o=1
+ 100 GO TO 20
+ 110 REM *** Game Over
+ 120 PRINT AT e,w; INK 3;CHR$ 145
+ 130 PRINT AT 21,23; FLASH 1; INK 2; PAPER 7; BRIGHT 1;"GAME OVER"
+ 140 PLAY "O3C1b$ba$ag$ge$e8cgc": REM O sets octave. $ flattens note.
+ 150 FOR g=1 TO 500: NEXT g: REM Pause without stopping FLASH
+ 160 RUN : REM Play again!
+ 170 REM *** Collect fruit
+ 180 LET score=score+1: PRINT AT 21,0;"Score: ";score: GO SUB 210: PLAY "1cC"
+ 190 IF length<200 THEN LET f=1: LET length=length+1
+ 200 RETURN
+ 210 REM *** Plant fruit
+ 220 LET fx=INT (RND*29)+1: LET fy=INT (RND*19)+1: IF m(fx+1,fy+1)=1 THEN GO TO 220
+ 230 PRINT AT fy,fx; INK 2;CHR$ 148
+ 240 LET m(fx+1,fy+1)=2
+ 250 RETURN
+ 260 REM *** Caterpillar game - by Sean McManus 2026
+ 270 REM *** Set up UDGs
+ 280 FOR h=1 TO 5: READ a$: FOR g=0 TO 7: READ a: POKE USR a$+g,a: NEXT g: NEXT h
+ 290 DATA "A",60,126,219,219,255,219,102,60: REM CHR$ 144 HEAD
+ 300 DATA "B",60,126,219,219,255,231,102,60: REM CHR$ 145 DEAD HEAD
+ 310 DATA "C",60,126,255,255,255,255,126,60: REM CHR$ 146 BODY
+ 320 DATA "D",0,48,60,126,126,255,255,124: REM CHR$ 147 ROCK
+ 330 DATA "E",66,102,60,24,60,60,60,24: REM CHR$ 148 RASPBERRY
+ 340 REM *** Set up variables
+ 350 DIM m(32,22): DIM x(200): DIM y(200)
+ 360 DIM h(4): DIM v(4): FOR g=1 TO 4: READ h(g),v(g): NEXT g
+ 370 DATA 1,0,0,1,-1,0,0,-1
+ 380 REM *** Draw edges, rocks
+ 390 BRIGHT 0: PAPER 4: CLS : BORDER 7
+ 400 INK 0
+ 410 FOR y=1 TO 20: PRINT AT y,0;CHR$ (137): LET m(1,y+1)=1: PRINT AT y,31;CHR$ (137): LET m(32,y+1)=1: BEEP 0.025,y: NEXT y: REM SIDES
+ 420 FOR x=0 TO 31: PRINT AT 0,x;CHR$ (137): LET m(x+1,1)=1: PRINT AT 20,x;CHR$ (137): LET m(x+1,21)=1: BEEP 0.025,x: NEXT x: REM TOP/BOTTOM
+ 430 FOR g=1 TO 15: LET x=INT (RND*29)+1: LET y=INT (RND*19)+1: PRINT AT y,x; INK 1;CHR$ 147: REM ROCKS
+ 440 LET m(x+1,y+1)=1: NEXT g
+ 450 REM *** Draw caterpillar
+ 460 LET q=5: LET a=1: LET score=0: LET o=2: LET w=15: LET e=10
+ 470 INK 3: FOR g=1 TO 5: LET x(g)=10+g: LET y(g)=10: PRINT AT y(g),x(g);CHR$ 146: LET m(11+g,11)=1: NEXT g: REM draw body
+ 480 PRINT AT e,w;CHR$ 144: REM draw head
+ 490 GO SUB 210: REM Plant first fruit
+ 500 RETURN

@@ -1,0 +1,22 @@
+  10 REM *** Anagrams by Sean McManus - 2026 ***
+  20 DIM a$(10,10): FOR g=1 TO 10: READ a$(g): NEXT g
+  30 DATA "iguana","weasel","mummify","turbine","retract","errand","cathode","boomerang","archaic","jeopardy"
+  40 LET score=0: FOR z=1 TO 5: REM Five questions loop
+  50 LET w=INT (RND*10)+1: LET w$=a$(w): REM Pick random word
+  60 REM *** Strip white space
+  70 LET s$="": FOR i=1 TO 10: IF w$(i)<>" " THEN LET s$=s$+w$(i)
+  80 NEXT i: LET b$=s$: REM Keep right answer in b$
+  90 REM *** Scramble the word
+ 100 FOR g=1 TO 10: LET l=INT (RND*(LEN s$-1)+1): LET s$=s$( TO l-1)+s$(l+1 TO )+s$(l): NEXT g: REM s$ is now scrambled
+ 110 REM *** Ask question
+ 120 CLS : PRINT AT 5,5; INK 1; PAPER 6;"Unscramble this!";AT 7,5; PAPER 3; INK 7;s$
+ 130 INPUT c$
+ 140 IF c$<>b$ THEN PRINT AT 9,5; FLASH 1; INK 2; PAPER 6;"Wrong! It's ";b$
+ 150 IF c$=b$ THEN PRINT AT 9,5; FLASH 1; INK 4; PAPER 6;"Correct!": LET score=score+1
+ 160 PAUSE 8
+ 170 NEXT z: REM Next question
+ 180 REM *** Ranking results
+ 190 PRINT AT 11,5; INK 6; PAPER 0;"You scored ";score
+ 200 IF score>3 THEN PRINT AT 13,5;"Your rating is expert!"
+ 210 IF score<2 THEN PRINT AT 13,5;"Your rating is poor"
+ 220 IF score=2 OR score=3 THEN PRINT AT 13,5;"Your rating is average"
